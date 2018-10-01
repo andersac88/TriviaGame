@@ -27,7 +27,7 @@ var questionsAnswers = [{
     wrong1: "The end of the war in Europe",
     wrong2: "Germany invading Poland",
     wrong3: "The United states recapturing the Philippines",
-    correct: "The allied invasion of Normandy",
+    correct: "The Allied invasion of Normandy",
     image: "assest/images/dday.jpg"
 }, {
     question: "What was the first city that the atomic bomb was dropped on?",
@@ -66,9 +66,10 @@ function gameIsAfoot () {
         console.log("success")
             clearInterval(intervalId);
             intervalId = null;
-            $(".timer").remove()
+            $(".timer").empty()
             $(".point").empty()
             $(".image").empty()
+            //Display Game Over along with the relative counts of correct, incorrect and unanswered
             var gameOver = $("<div class='mt-3 gameOver temp'>")
             gameOver.text("Game Over!")
             $(".point").append(gameOver)
@@ -81,13 +82,34 @@ function gameIsAfoot () {
             var endUnanswered = $("<div class='mt-3 temp'>")
             endUnanswered.text("Total Unanswered: " + unanswered)
             $(".point").append(endUnanswered)
+            //add a reset button at the end of the game
+            var ResetDiv = $("<div>");
+            var Reset = $("<button>");
+            ResetDiv.addClass("row justify-content-center")
+            Reset.attr("type", "button");
+            Reset.addClass("btn btn-outline-dark btn-lg mb-2 reset");
+            Reset.text("Play Again?")
+            $(".questionPoint").append(ResetDiv)
+            ResetDiv.append(Reset);
+            $(".reset").on("click", function() {
+                console.log("Success");
+                number = 15;
+                count = 0;
+                correct = 0;
+                incorrect = 0;
+                unanswered = 0;
+                timer();
+                gameIsAfoot(); 
+            });
             return
       }
 //empty elements whenever function starts
+    $(".questionPoint").empty();
     $(".point").empty();
     $(".image").empty();
 // create elements to display question and potential answers on screen
 // answers to questiosn should be buttons
+// so not DRY......
 var Question = $("<div>");
 var Wrong1Div = $("<div>");
 var Wrong1 = $("<button>");
@@ -118,7 +140,6 @@ Wrong3.text(questionsAnswers[count].wrong3)
 Right.text(questionsAnswers[count].correct)
 
 $(".point").append(Question)
-
 $(".questionPoint").append(Wrong1Div)
 Wrong1Div.append(Wrong1);
 $(".questionPoint").append(Wrong2Div)
