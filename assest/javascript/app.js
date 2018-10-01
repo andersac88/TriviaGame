@@ -57,6 +57,20 @@ var questionsAnswers = [{
     wrong3: "Traudl Junge",
     correct: "Eva Braun",
     image: "assest/images/Braun.jpeg",
+}, {
+    question: "Who was nicknamed 'The Desert Fox'?",
+    wrong1: "Abdul Munim Wassel",
+    wrong2: "George Patton",
+    wrong3: "Bernard Montgomery",
+    correct: "Erwin Rommel",
+    image: "assest/images/Rommel.jpeg",
+} {
+    question: "What was the code-name for the German invasion of the Soviet Union",
+    wrong1: "Operation Sea Lion",
+    wrong2: "Operation Torch",
+    wrong3: "Operation Blue",
+    correct: "Operation Barbarossa",
+    image: "assest/images/Barbarossa.jpeg",
 }
 ];
 
@@ -219,6 +233,7 @@ function decrement() {
 
 // have it so clicking "start" initiates game
 $(".initiator").on("click", function() {
+    $(".container").addClass("paperBag")
     $(".Button").remove()
    timer();
    gameIsAfoot(); 
