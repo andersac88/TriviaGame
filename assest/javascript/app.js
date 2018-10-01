@@ -64,7 +64,7 @@ var questionsAnswers = [{
     wrong3: "Bernard Montgomery",
     correct: "Erwin Rommel",
     image: "assest/images/Rommel.jpeg",
-} {
+}, {
     question: "What was the code-name for the German invasion of the Soviet Union",
     wrong1: "Operation Sea Lion",
     wrong2: "Operation Torch",
