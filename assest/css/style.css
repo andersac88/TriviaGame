@@ -1,15 +1,30 @@
 html body {
-    background-image: url(../images/QuestionMarkBackground.jpg);
+    background-image: url(../images/WW2.jpg);
     font-family: 'Special Elite', 'Courier New', Courier, monospace;
+    font-size: 20px;
 }
 
 .container {
   background-image: url(../images/Brown\ Paper.jpg);
   background-size: 100%;
-  height: 450px;
-  margin-top: 50px;
+  height: 500px;
+  margin-top: 150px;
 }
 
 .timer {
     text-align: center;
+}
+.point {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.temp {
+    text-align: center;
+}
+
+img {
+    margin-left: auto;
+    margin-right: auto;
+    height: 200px;
 }
