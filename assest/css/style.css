@@ -28,3 +28,9 @@ img {
     margin-right: auto;
     height: 200px;
 }
+
+.gameOver {
+    font-size: 35px;
+    color: red;
+    font-weight: bold;
+}

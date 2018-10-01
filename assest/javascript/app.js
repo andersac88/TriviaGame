@@ -1,12 +1,13 @@
 
 
-//create array of questions and answers; each question is an new object with the incorrect and correct answers being keys
+//establish necessary variables
 var number = 15;
 var count = 0;
 var correct = 0;
 var incorrect = 0;
 var unanswered = 0;
 var intervalId;
+//create array of questions and answers; each question is an new object with the incorrect and correct answers being keys
 var questionsAnswers = [{
     question: "When was the attack on Pearl Harbor?",
     wrong1: "September 1, 1939",
@@ -58,18 +59,35 @@ var questionsAnswers = [{
     image: "assest/images/Braun.jpeg",
 }
 ];
-// upon game commenceing, have first set of questions and answers displayed on screen
-// answers to questiosn should be buttons
+
 function gameIsAfoot () {
+// end condition for game
     if (count >= questionsAnswers.length) {
         console.log("success")
             clearInterval(intervalId);
             intervalId = null;
             $(".timer").remove()
+            $(".point").empty()
+            $(".image").empty()
+            var gameOver = $("<div class='mt-3 gameOver temp'>")
+            gameOver.text("Game Over!")
+            $(".point").append(gameOver)
+            var endCorrect = $("<div class='mt-3 temp'>")
+            endCorrect.text("Total Correct: " + correct)
+            $(".point").append(endCorrect)
+            var endIncorrect = $("<div class='mt-3 temp'>")
+            endIncorrect.text("Total Incorrect: " + incorrect)
+            $(".point").append(endIncorrect)
+            var endUnanswered = $("<div class='mt-3 temp'>")
+            endUnanswered.text("Total Unanswered: " + unanswered)
+            $(".point").append(endUnanswered)
             return
       }
+//empty elements whenever function starts
     $(".point").empty();
     $(".image").empty();
+// create elements to display question and potential answers on screen
+// answers to questiosn should be buttons
 var Question = $("<div>");
 var Wrong1Div = $("<div>");
 var Wrong1 = $("<button>");
@@ -100,7 +118,7 @@ Wrong3.text(questionsAnswers[count].wrong3)
 Right.text(questionsAnswers[count].correct)
 
 $(".point").append(Question)
-//how do I randomize the below...
+
 $(".questionPoint").append(Wrong1Div)
 Wrong1Div.append(Wrong1);
 $(".questionPoint").append(Wrong2Div)
@@ -109,6 +127,11 @@ $(".questionPoint").append(Wrong3Div)
 Wrong3Div.append(Wrong3);
 $(".questionPoint").append(RightDiv)
 RightDiv.append(Right);
+// randomizes the above elemants
+var ul = document.querySelector('.questionPoint');
+for (var i = ul.children.length; i >= 0; i--) {
+    ul.appendChild(ul.children[Math.random() * i | 0]);
+}
 
 // click incorrect answer, somethinh should display signiying incorrect; keep tally of incorrect answer
 $(".wrong").on("click", function() {
@@ -122,7 +145,7 @@ $(".wrong").on("click", function() {
     $(".point").append(correctGuess)
     $(".image").html("<img src=" + questionsAnswers[count].image + ">")
     clearInterval(intervalId);
-    setTimeout(nextQuestion, 3000);
+    setTimeout(nextQuestion, 2000);
     return
 
  });
@@ -135,11 +158,11 @@ $(".right").on("click", function(){
      $(".point").append(youAreCorrect)
      $(".image").html("<img src=" + questionsAnswers[count].image + ">")
      clearInterval(intervalId);
-    setTimeout(nextQuestion, 3000);
+    setTimeout(nextQuestion, 2000);
      return
  });
 }
-
+// following one of the options (correct, incorrect, unasnwered), move onto next question and restart timer
 function nextQuestion() {
     count++
     console.log(count)
@@ -149,7 +172,7 @@ function nextQuestion() {
    
 }
 
-// time of ticking down from 30 seconds should display for each question
+// timer ticking down from 30 seconds should display for each question
 function timer() {
     clearInterval(intervalId);
     intervalId = setInterval(decrement, 1000);
@@ -169,7 +192,7 @@ function decrement() {
         $(".point").append(correctGuess)
         $(".image").html("<img src=" + questionsAnswers[count].image + ">")
         clearInterval(intervalId);
-        setTimeout(nextQuestion, 3000);
+        setTimeout(nextQuestion, 2000);
     } 
 };
 
@@ -183,6 +206,3 @@ $(".initiator").on("click", function() {
 
 
 
-
-
-// following one of the three above options (correct, incorrect, unasnwered), move onto next question and restart timer
