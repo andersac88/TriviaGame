@@ -1,5 +1,3 @@
-
-
 //establish necessary variables
 var number = 15;
 var count = 0;
@@ -7,6 +5,7 @@ var correct = 0;
 var incorrect = 0;
 var unanswered = 0;
 var intervalId;
+
 //create array of questions and answers; each question is an new object with the incorrect and correct answers being keys
 var questionsAnswers = [{
     question:"When was the attack on Pearl Harbor?",
@@ -14,6 +13,7 @@ var questionsAnswers = [{
             "May 7, 1945",
             "December 11, 1941", "December 7, 1941"],
     image: "assest/images/Pearl.jpg"
+    
 }, {
     question: "Who was the Supreme Allied Commander in Europe?",
    answer: ["Winston Churchill",
@@ -59,7 +59,7 @@ var questionsAnswers = [{
 }, {
     question: "Who was nicknamed 'The Desert Fox'?",
     answer: ["Abdul Munim Wassel",
-    "George Patton",
+    "George S. Patton",
     "Bernard Montgomery",
     "Erwin Rommel"],
     image: "assest/images/Rommel.jpeg",
@@ -76,7 +76,6 @@ var questionsAnswers = [{
 function gameIsAfoot () {
 // end condition for game
     if (count >= questionsAnswers.length) {
-        console.log("success")
             clearInterval(intervalId);
             intervalId = null;
             $(".timer").empty()
@@ -105,7 +104,6 @@ function gameIsAfoot () {
             $(".questionPoint").append(ResetDiv)
             ResetDiv.append(Reset);
             $(".reset").on("click", function() {
-                console.log("Success");
                 number = 15;
                 count = 0;
                 correct = 0;
@@ -114,20 +112,19 @@ function gameIsAfoot () {
                 timer();
                 gameIsAfoot(); 
             });
-            return
+          return;  
       }
 //empty elements whenever function starts
     $(".questionPoint").empty();
     $(".point").empty();
     $(".image").empty();
-// create elements to display question and potential answers on screen
-// answers to questiosn should be buttons
-// so not DRY......
+// create elements to display question 
+// answers to questions should be buttons
 var Question = $("<div>");
 Question.text(questionsAnswers[count].question)
 $(".point").append(Question)
-
-for (i=0; i<questionsAnswers[count].answer.length; i++) {
+//create loop to generate list of questions that are buttons
+for (i = 0; i < questionsAnswers[count].answer.length; i++) {
     var buttonDiv = $("<div>")
     buttonDiv.addClass("row justify-content-center")
     var button = $("<button>")
@@ -138,7 +135,7 @@ for (i=0; i<questionsAnswers[count].answer.length; i++) {
     $(".questionPoint").append(buttonDiv)
     buttonDiv.append(button);
 }
-// randomizes the above elemants
+// randomizes the above generated questions // I am not too sure how/why it works (thanks google)
 var ul = document.querySelector('.questionPoint');
 for (var i = ul.children.length; i >= 0; i--) {
     ul.appendChild(ul.children[Math.random() * i | 0]);
@@ -155,12 +152,13 @@ $(".answer").on("click", function() {
         $(".image").html("<img src=" + questionsAnswers[count].image + ">");
         clearInterval(intervalId);
        setTimeout(nextQuestion, 2000);
-       return;
     } else if ($(this).attr("data-value") !== "3") {
     incorrect++;
     $(".btn").remove()
+    var wrongData = $(this).attr("data-value")
+    var wrongNumber = parseInt(wrongData)
     var wrongGuess = $("<div class='mt-3 temp'>")
-    wrongGuess.text("That is incorrect.")
+    wrongGuess.text(questionsAnswers[count].answer[wrongNumber] + " is incorrect.")
     $(".point").append(wrongGuess)
     var correctGuess = $("<div class='mt-3 temp'>")
     correctGuess.text("The correct answer is " + questionsAnswers[count].answer[3])
@@ -168,7 +166,6 @@ $(".answer").on("click", function() {
     $(".image").html("<img src=" + questionsAnswers[count].image + ">")
     clearInterval(intervalId);
     setTimeout(nextQuestion, 2000);
-    return
  }
 }) 
 // click correct answer, something should display signifying correct answer; keep tally of correct answers
@@ -176,7 +173,6 @@ $(".answer").on("click", function() {
 // following one of the options (correct, incorrect, unasnwered), move onto next question and restart timer
 function nextQuestion() {
     count++
-    console.log(count)
     number = 15;
     timer();
     gameIsAfoot();
@@ -206,7 +202,7 @@ function decrement() {
     } 
 };
 
-// have it so clicking "start" initiates game
+// have it so clicking "start" initiates game and add the paper background
 $(".initiator").on("click", function() {
     $(".container").addClass("paperBag")
     $(".Button").remove()
