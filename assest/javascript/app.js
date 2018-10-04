@@ -163,7 +163,7 @@ $(".answer").on("click", function() {
     wrongGuess.text("That is incorrect.")
     $(".point").append(wrongGuess)
     var correctGuess = $("<div class='mt-3 temp'>")
-    correctGuess.text("The correct answer is " + questionsAnswers[count].correct)
+    correctGuess.text("The correct answer is " + questionsAnswers[count].answer[3])
     $(".point").append(correctGuess)
     $(".image").html("<img src=" + questionsAnswers[count].image + ">")
     clearInterval(intervalId);
@@ -198,7 +198,7 @@ function decrement() {
         timesUp.text("You are out of Time")
         $(".point").append(timesUp)
         var correctGuess = $("<div class='mt-3 temp'>")
-        correctGuess.text("The correct answer is " + questionsAnswers[count].correct)
+        correctGuess.text("The correct answer is " + questionsAnswers[count].answer[3])
         $(".point").append(correctGuess)
         $(".image").html("<img src=" + questionsAnswers[count].image + ">")
         clearInterval(intervalId);
