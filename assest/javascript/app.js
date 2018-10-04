@@ -27,14 +27,14 @@ var questionsAnswers = [{
     "Germany invading Poland",
     "The United states recapturing the Philippines",
     "The Allied invasion of Normandy"],
-    image: "assest/images/dday.jpg"
+    image: "https://media.giphy.com/media/3o6Zthqgss4W4klvZC/giphy.gif"
 }, {
     question: "What was the first city that the atomic bomb was dropped on?",
     answer: ["Nagasaki",
     "Tokyo",
     "Okinawa",
     "Hiroshima"],
-    image: "assest/images/Hiroshima.jpeg"
+    image: "https://media.giphy.com/media/72ZoVgLwzSXsc/giphy.gif"
 }, {
     question: "Who was the fascist dictator of Italy?",
     answer: ["Adolf Hitler",
@@ -56,6 +56,7 @@ var questionsAnswers = [{
     "Traudl Junge",
     "Eva Braun"],
     image: "assest/images/Braun.jpeg",
+    
 }, {
     question: "Who was nicknamed 'The Desert Fox'?",
     answer: ["Abdul Munim Wassel",
