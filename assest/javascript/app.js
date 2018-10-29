@@ -115,6 +115,7 @@ function gameIsAfoot () {
             });
           return;  
       }
+      $(".timer").text("Time Remaining: " + number + " seconds");
 //empty elements whenever function starts
     $(".questionPoint").empty();
     $(".point").empty();
